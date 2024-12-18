@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">CourseWorkApp</string>
+    <string name="title">YandereBook</string>
+    <!--    LOGIN    -->
+    <string name="loginTitle">Вход</string>
+    <string name="loginEnterButton">Войти</string>
+    <string name="loginEmailHint">Почта</string>
+    <string name="loginPasswordHint">Пароль</string>
+
+    <!--    REGISTER    -->
+    <string name="registerTitle">Регистрация</string>
+    <string name="registerEnterButton">Зарегистрироваться</string>
+    <string name="registerUsernameHint">Имя пользователя</string>
+
+    <!--    MAIN    -->
+    <string name="mainSearchHint">Поиск</string>
+
+
 </resources>
