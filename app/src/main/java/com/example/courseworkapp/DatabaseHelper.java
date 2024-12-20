@@ -40,9 +40,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "id integer primary key autoincrement,"
                 + "username varchar(80) not null unique,"
                 + "balance integer,"
-                + "password varchar(256) not null,"
-                + "email varchar(120) not null unique,"
-                + "created_at date);";
+                + "password varchar(128) not null,"
+                + "email varchar(120) not null unique);";
 
         String create_reviews_query = "CREATE TABLE IF NOT EXISTS " + REVIEW_TABLE + "("
                 + "id integer primary key autoincrement,"

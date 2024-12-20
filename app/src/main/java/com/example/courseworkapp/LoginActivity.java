@@ -9,6 +9,9 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
+
+
 public class LoginActivity extends AppCompatActivity {
     Database db;
     @Override
@@ -20,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
         Button goRegButton = findViewById(R.id.loginRegisterButton);
 
         db = new Database(getApplicationContext());
+//        db.drop();
+
 
         enterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,10 +32,17 @@ public class LoginActivity extends AppCompatActivity {
                 EditText email = findViewById(R.id.loginEmail);
                 EditText password = findViewById(R.id.loginPassword);
 
-                if (email != null && password != null) {
-                    User us = db.getUser(null, email.getText().toString());
+                String em = email.getText().toString();
+                String passwd = password.getText().toString();
+
+                if (em != null && passwd != null) {
+                    User us = db.getUser(null, em);
+
                     if (us != null) {
-                        Log.i("LOGIN", "User found");
+                        if (us.getPassword().equals(passwd)) {
+                            Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(loginIntent);
+                        }
                     }
                 }
             }

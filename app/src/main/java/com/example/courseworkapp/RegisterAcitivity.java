@@ -21,8 +21,6 @@ public class RegisterAcitivity extends AppCompatActivity {
         setContentView(R.layout.activiy_register);
 
         Button regButton = findViewById(R.id.regEnterButton);
-//        db = new Database(getApplicationContext());
-//        db.drop();
 
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,19 +36,13 @@ public class RegisterAcitivity extends AppCompatActivity {
                 String passwd = password.getText().toString();
 
                 if (!us.isEmpty() && !us.isEmpty() && !us.isEmpty()) {
-                    User user = new User(
-                        -1, us, 0, em, passwd
-                    );
+                    User user = new User(-1, us, 0, em, passwd);
                     try {
                         User result = db.insertUser(user);
-                        if (result != null) {
-                            Log.d("USER ADDED", result.getEmail());
-                        }
-
                         Intent mainIntent = new Intent(RegisterAcitivity.this, MainActivity.class);
                         startActivity(mainIntent);
                     } catch (SQLiteConstraintException sql_err) {
-                        Log.e("Sql exception", sql_err.getMessage().toString());
+                        Log.e("[REGISTER] SQL EXCEPTION", sql_err.getMessage().toString());
                     }
 
                 }
