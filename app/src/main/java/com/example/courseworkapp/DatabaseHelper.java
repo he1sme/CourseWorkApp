@@ -23,12 +23,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String create_authors_query = "CREATE TABLE IF NOT EXISTS " + AUTHOR_TABLE + "("
-                + "id integer primary key,"
+                + "id integer primary key autoincrement,"
                 + "name varchar(80),"
                 + "surname varchar(80));";
 
         String create_books_query = "CREATE TABLE IF NOT EXISTS " + BOOK_TABLE + "("
-                + "id integer primary key,"
+                + "id integer primary key autoincrement,"
                 + "name varchar(60) not null,"
                 + "description text,"
                 + "isbn varchar(90),"
@@ -37,14 +37,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "FOREIGN KEY (author_id) REFERENCES " + AUTHOR_TABLE + "(id));";
 
         String create_users_query = "CREATE TABLE IF NOT EXISTS " + USER_TABLE + "("
-                + "id integer primary key,"
-                + "username varchar(80) not null,"
+                + "id integer primary key autoincrement,"
+                + "username varchar(80) not null unique,"
+                + "balance integer,"
                 + "password varchar(256) not null,"
                 + "email varchar(120) not null unique,"
                 + "created_at date);";
 
         String create_reviews_query = "CREATE TABLE IF NOT EXISTS " + REVIEW_TABLE + "("
-                + "id integer primary key,"
+                + "id integer primary key autoincrement,"
                 + "user_id integer,"
                 + "book_id integer,"
                 + "review_text text not null,"
@@ -52,7 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "FOREIGN KEY (book_id) REFERENCES " + BOOK_TABLE + "(id));";
 
         String create_ratings_query = "CREATE TABLE IF NOT EXISTS " + RATING_TABLE + "("
-                + "id integer primary key,"
+                + "id integer primary key autoincrement,"
                 + "user_id integer,"
                 + "book_id integer,"
                 + "rating integer,"
