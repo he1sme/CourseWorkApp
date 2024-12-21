@@ -30,8 +30,14 @@ public class User {
             Toast.makeText(ctx, "Email подтвержден", Toast.LENGTH_SHORT).show();
             return true;
         }
-        Toast.makeText(ctx, "Ошибка в электронном адресе или пароле(минимум 8 символов)", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ctx, "Ошибка в электронном адресе или пароле (минимум 8 символов)", Toast.LENGTH_SHORT).show();
         return false;
+    }
+
+    public int setBalance(int newBalance) {
+        int t = this.balance;
+        this.balance = newBalance;
+        return t;
     }
 
 }

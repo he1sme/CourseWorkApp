@@ -44,7 +44,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
-        android:id="@+id/mainMainButton"
+        android:id="@+id/mainProfileButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:contentDescription="@string/title"

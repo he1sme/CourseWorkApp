@@ -14,14 +14,6 @@ public class Cart {
 
     public ArrayList<Integer> getOrderList() { return this.orderList; }
 
-//    public int getTotalCost() {
-//        int sum = 0;
-//        for (Book book : orderList) {
-//            sum += book.getCost();
-//        }
-//        return sum;
-//    }
-
     public int add(int book_id) {
         if (!this.orderList.contains(book_id)) {
             this.orderList.add(book_id);
@@ -30,13 +22,15 @@ public class Cart {
         return -1;
     }
 
+    public void clear() {
+        this.orderList = new ArrayList<>();
+    }
+
     public int remove(int book_id) {
         if (this.orderList.contains(book_id)) {
-
             this.orderList.remove(
                     this.orderList.indexOf(book_id)
             );
-
             return book_id;
         }
         return -1;

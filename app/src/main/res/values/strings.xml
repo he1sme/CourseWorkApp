@@ -19,4 +19,12 @@
     <string name="bookDelete">Удалить из корзины</string>
     <string name="bookConfirm">Добавить в корзину</string>
 
+    <!--  CART  -->
+    <string name="cartConfirm">Подтвердить заказ</string>
+    <string name="cartPrice">Сумма к оплате</string>
+
+    <!--  PROFILE  -->
+    <string name="profileTitle">Профиль</string>
+
+
 </resources>

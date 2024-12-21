@@ -42,4 +42,19 @@ public class DatabaseUser extends Database {
         }
         return null;
     }
+
+    public User updateUser(int id, User user) {
+        ContentValues values = new ContentValues();
+        values.put("username", user.getUsername());
+        values.put("balance", user.getBalance());
+        values.put("email", user.getEmail());
+        values.put("password", user.getPassword());
+
+        long result = this.db.update(DatabaseHelper.USER_TABLE, values, Integer.toString(id), null);
+
+        if (result != -1) {
+            return user;
+        }
+        return null;
+    }
 }

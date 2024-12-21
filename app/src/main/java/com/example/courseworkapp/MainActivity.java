@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        dbBook.insertBook(new Book(1, "Crime and punishment", "test", 120, fyodor, "123", 1865));
 //        dbBook.insertBook(new Book(2, "No Longer Human", "test", 160, dazai, "1234", 1948));
-
+//
 //        dbBook.insertBook(new Book(3, "Idiot",
 //                "Главный герой романа Фёдора Достоевского «Идиот» — князь Лев Николаевич Мышкин. 12 Это последний представитель древнего обедневшего рода. В юности у него проявилась эпилепсия, и его отправили на лечение в Швейцарию, где он провёл четыре года.",
 //                220, fyodor, "12345", 1867));
@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         books = dbBook.getBooks();
 
         ImageButton cartButton = findViewById(R.id.mainCartButton);
+        ImageButton profileButton = findViewById(R.id.mainProfileButton);
+        profileButton.setImageResource(R.drawable.profile);
 
         cartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +57,15 @@ public class MainActivity extends AppCompatActivity {
                 Intent cartIntent = new Intent(MainActivity.this, CartActivity.class);
                 cartIntent.putExtra("user_id", loggedId);
                 startActivity(cartIntent);
+            }
+        });
+
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profileIntent = new Intent(MainActivity.this, ProfileActivity.class);
+                profileIntent.putExtra("userId", loggedId);
+                startActivity(profileIntent);
             }
         });
 
@@ -89,10 +100,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         adapter.setList(filteredBooks);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 }

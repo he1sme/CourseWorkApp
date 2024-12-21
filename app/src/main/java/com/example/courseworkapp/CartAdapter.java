@@ -36,7 +36,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        Log.d("ORDER LIST SIZE", Integer.toString(orderList.size()));
         return orderList.size();
     }
 
