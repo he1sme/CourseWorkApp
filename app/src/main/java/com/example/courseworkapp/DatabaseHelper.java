@@ -32,7 +32,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "name varchar(60) not null,"
                 + "description text,"
                 + "isbn varchar(90),"
-                + "public_date date,"
+                + "public_date integer,"
+                + "cost integer,"
                 + "author_id integer,"
                 + "FOREIGN KEY (author_id) REFERENCES " + AUTHOR_TABLE + "(id));";
 

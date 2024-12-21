@@ -1,19 +1,19 @@
 package com.example.courseworkapp;
 
 import android.content.Intent;
+import android.hardware.biometrics.BiometricPrompt;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Objects;
-
 
 public class LoginActivity extends AppCompatActivity {
-    Database db;
+    DatabaseUser dbUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +22,8 @@ public class LoginActivity extends AppCompatActivity {
         Button enterButton = findViewById(R.id.loginEnterButton);
         Button goRegButton = findViewById(R.id.loginRegisterButton);
 
-        db = new Database(getApplicationContext());
-//        db.drop();
+        dbUser = new DatabaseUser(getApplicationContext());
+//        dbUser.drop();
 
 
         enterButton.setOnClickListener(new View.OnClickListener() {
@@ -35,13 +35,15 @@ public class LoginActivity extends AppCompatActivity {
                 String em = email.getText().toString();
                 String passwd = password.getText().toString();
 
-                if (em != null && passwd != null) {
-                    User us = db.getUser(null, em);
-
+                if (!em.isEmpty() && !passwd.isEmpty()) {
+                    User us = dbUser.getUser(null, em);
                     if (us != null) {
                         if (us.getPassword().equals(passwd)) {
                             Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
+                            loginIntent.putExtra("user_id", us.getId());
                             startActivity(loginIntent);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -60,6 +62,5 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        db.close();
     }
 }

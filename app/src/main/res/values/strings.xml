@@ -15,5 +15,8 @@
     <!--    MAIN    -->
     <string name="mainSearchHint">Поиск</string>
 
+    <!--  BOOK  -->
+    <string name="bookDelete">Удалить из корзины</string>
+    <string name="bookConfirm">Добавить в корзину</string>
 
 </resources>

@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterAcitivity extends AppCompatActivity {
-    Database db;
+    DatabaseUser dbUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +29,20 @@ public class RegisterAcitivity extends AppCompatActivity {
                 EditText email = findViewById(R.id.regEmail);
                 EditText password = findViewById(R.id.regPassword);
 
-                db = new Database(getApplicationContext());
+                dbUser = new DatabaseUser(getApplicationContext());
 
                 String us = username.getText().toString();
                 String em = email.getText().toString();
                 String passwd = password.getText().toString();
 
-                if (!us.isEmpty() && !us.isEmpty() && !us.isEmpty()) {
+                if (!us.isEmpty() && !em.isEmpty() && !passwd.isEmpty()) {
                     User user = new User(-1, us, 0, em, passwd);
                     try {
-                        User result = db.insertUser(user);
-                        Intent mainIntent = new Intent(RegisterAcitivity.this, MainActivity.class);
-                        startActivity(mainIntent);
+                        if (User.checkData(getApplicationContext(), em, passwd)) {
+                            dbUser.insertUser(user);
+                            Intent mainIntent = new Intent(RegisterAcitivity.this, MainActivity.class);
+                            startActivity(mainIntent);
+                        }
                     } catch (SQLiteConstraintException sql_err) {
                         Log.e("[REGISTER] SQL EXCEPTION", sql_err.getMessage().toString());
                     }
@@ -53,6 +55,5 @@ public class RegisterAcitivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        db.close();
     }
 }

@@ -8,15 +8,17 @@ public class Book {
     private Author author;
     private String description;
     private String isbn;
-    private Date public_date;
+    private int public_date;
+    private int cost;
 
-    public Book (int id, String name, String desc, Author author, String isbn, Date date) {
+    public Book (int id, String name, String desc, int cost, Author author, String isbn, int date) {
         this.id = id;
         this.name = name;
         this.description = desc;
         this.author = author;
         this.isbn = isbn;
         this.public_date = date;
+        this.cost = cost;
     }
 
     public int getId() { return this.id; }
@@ -24,5 +26,8 @@ public class Book {
     public Author getAuthor() { return this.author; }
     public String getDescription() { return this.description; }
     public String getIsbn() { return this.isbn; }
-    public Date getDate() { return this.public_date; }
+    public int getDate() { return this.public_date; }
+    public int getCost() { return this.cost; }
+
+    public void setAuthor(Author new_author) { this.author = new_author; }
 }
